@@ -1,0 +1,54 @@
+ID_Startup,Nome_Real,Nome_Anonimizado,Setor_Industria,Premissa_Inicial_Input,Status_Real,Motivo_Real_Gabarito,Rotulo_Categorico,Desfecho_Previsto_IA,URL_Fonte,Resposta_Generica,Resposta_Advogado_Diabo,Otimismo_Gen,Risco_Gen,Otimismo_Adv,Risco_Adv
+F01,Quibi,Plataforma móvel de vídeos curtos por assinatura,MediaTech B2C,"A tese inicial era criar uma plataforma móvel de entretenimento com episódios curtos, pensada para consumo rápido em deslocamento e em pausas do dia. O problema identificado era a dificuldade de adaptar conteúdo premium ao hábito de atenção fragmentada do público móvel. A solução proposta combinava produção própria, curadoria de alto orçamento e experiência nativa para smartphone. O modelo de receita previa assinatura mensal com e sem publicidade.",Falha,"A empresa encerrou as operações poucos meses após o lançamento, alegando que o modelo standalone deixou de ser viável e que o contexto de mercado mudou rapidamente. A baixa tração e a dificuldade de adequar o formato ao comportamento real de consumo foram fatores centrais.",Poor Market Fit,[Deixar em Branco para o Experimento],https://www.cnn.com/2020/10/21/media/quibi-shutting-down,"{
+  ""analise_desejabilidade"": {
+    ""dor_do_mercado"": 80, 
+    ""atatividade_da_solucao"": 70
+  },
+  ""analise_viabilidade"": {
+    ""modelo_de_receita"": 60, 
+    ""custos"": 50, 
+    ""concorrência"": 40
+  },
+  ""analise_praticabilidade"": {
+    ""capacidade_tecnica_execucao"": 90
+  },
+  ""principal_forca"": ""Experiência nativa para smartphone"",
+  ""principal_fraqueza"": ""Dificuldade de produzir conteúdo premium de alta qualidade e curto prazo"",
+  ""probabilidade_sucesso_0_a_100"": 60,
+  ""probabilidade_falencia_0_a_100"": 40,
+  ""veredito_final"": ""Aprovada""
+}","{
+  ""analise_desejabilidade"": {
+    ""Por que os clientes NÃO vão querer isso?"": [
+      ""O público móvel já tem opções de entretenimento premium e curto, como Netflix e YouTube. Por que escolher uma plataforma nova?"",
+      ""A experiência nativa para smartphone não é suficiente para compensar a falta de conteúdo familiar"",
+      ""A assinatura mensal pode ser um obstáculo para os usuários que preferem consumir conteúdo de forma gratuita""
+    ]
+  },
+  ""analise_viabilidade"": {
+  ""Onde o modelo de negócios e a receita vão quebrar?"": [
+    ""A receita depende da assinatura mensal, mas a concorrência é alta e os usuários podem escolher outras opções"",
+    ""A produção própria de conteúdo pode ser cara e não garantir o sucesso"",
+    ""A curadoria de alto orçamento pode não ser suficiente para atrair e manter um público fiel""
+  ]
+},
+  ""analise_praticabilidade"": {
+  ""Quais são os gargalos técnicos ou operacionais fatais?"": [
+    ""A plataforma móvel pode ter problemas de escalabilidade e performance"",
+    ""A gestão de conteúdo e a curadoria podem ser desafiadoras para uma equipe pequena"",
+    ""A implementação de um modelo de receita complexo pode levar tempo e recursos""
+  ]
+},
+  ""principal_forca"": {
+  ""Seja cético, mas aponte o único ponto que talvez faça sentido"": [
+    ""A experiência nativa para smartphone pode ser uma vantagem competitiva""
+  ]
+},
+  ""principal_fraqueza"": {
+  ""O motivo exato da ruína projetada"": [
+    ""A falta de um público fiel e a concorrência alta podem levar à falência""
+  ]
+},
+  ""probabilidade_sucesso_0_a_100"": 20,
+  ""probabilidade_falencia_0_a_100"": 80,
+  ""veredito_final"": ""Rejeitada"" }",0,1,1,3

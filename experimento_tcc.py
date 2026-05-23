@@ -24,18 +24,41 @@ MAX_TOKENS = 800  # Limite do tamanho da resposta gerada (Ollama usa 'num_predic
 
 # Templates de Prompts
 PROMPT_GENERICO_BASE = (
-    "Você é um assistente virtual de negócios. Avalie a seguinte premissa inicial de uma startup. "
-    "Faça uma análise sobre o problema, a solução e o modelo de negócios e dê sua opinião sobre a viabilidade dessa empresa.\n\n"
+    "Você é um consultor sênior de negócios digitais. Avalie a premissa de startup abaixo "
+    "utilizando estritamente a ótica do 'Lean Canvas' e 'Design Thinking'.\n\n"
+    "DADOS DA STARTUP:\n"
     "Setor: {setor}\n"
-    "Premissa: {premissa}"
+    "Premissa: {premissa}\n\n"
+    "REGRAS DE SAÍDA: Responda EXCLUSIVAMENTE em formato JSON válido, sem nenhum texto antes ou depois, usando exatamente estas chaves:\n"
+    "{{\n"
+    '  "analise_desejabilidade": "(Avaliação sobre a dor do mercado e atratividade da solução)",\n'
+    '  "analise_viabilidade": "(Avaliação sobre o modelo de receita, custos e concorrência)",\n'
+    '  "analise_praticabilidade": "(Avaliação sobre a capacidade técnica de execução)",\n'
+    '  "principal_forca": "(O maior ponto positivo ou diferencial do negócio)",\n'
+    '  "principal_fraqueza": "(A falha mais crítica ou maior risco)",\n'
+    '  "probabilidade_sucesso_0_a_100": (número inteiro entre 0 e 100),\n'
+    '  "probabilidade_falencia_0_a_100": (número inteiro entre 0 e 100),\n'
+    '  "veredito_final": "(Aprovada / Rejeitada / Necessita Pivotagem)"\n'
+    "}}"
 )
 
 PROMPT_DIABO_BASE = (
-    "Aja estritamente como um 'Advogado do Diabo' implacável, focado em auditoria de risco e mitigação de viés de otimismo (sicofancia). "
-    "Sua tarefa exclusiva é tentar falsificar a ideia de negócio apresentada abaixo. Não seja polido, não tente me agradar e não forneça validações otimistas infundadas. "
-    "Sua análise deve: 1. Questionar duramente as premissas. 2. Apontar vulnerabilidades de mercado. 3. Listar o motivo provável de falência em 2 anos.\n\n"
+    "Aja como um 'Advogado do Diabo' implacável e auditor de riscos de Venture Capital. "
+    "Sua meta é encontrar a falha fatal que levará este negócio à falência, combatendo qualquer viés de otimismo.\n\n"
+    "DADOS DA STARTUP:\n"
     "Setor: {setor}\n"
-    "Premissa: {premissa}"
+    "Premissa: {premissa}\n\n"
+    "REGRAS DE SAÍDA: Responda EXCLUSIVAMENTE em formato JSON válido, sem nenhum texto antes ou depois, usando exatamente estas chaves para o Stress-Test:\n"
+    "{{\n"
+    '  "analise_desejabilidade": "(Ataque a premissa: Por que os clientes NÃO vão querer isso?)",\n'
+    '  "analise_viabilidade": "(Ataque a premissa: Onde o modelo de negócios e a receita vão quebrar?)",\n'
+    '  "analise_praticabilidade": "(Ataque a premissa: Quais são os gargalos técnicos ou operacionais fatais?)",\n'
+    '  "principal_forca": "(Seja cético, mas aponte o único ponto que talvez faça sentido)",\n'
+    '  "principal_fraqueza": "(O motivo exato da ruína projetada)",\n'
+    '  "probabilidade_sucesso_0_a_100": (número inteiro entre 0 e 100),\n'
+    '  "probabilidade_falencia_0_a_100": (número inteiro entre 0 e 100),\n'
+    '  "veredito_final": "(Aprovada / Rejeitada / Necessita Pivotagem)"\n'
+    "}}"
 )
 
 
@@ -54,6 +77,7 @@ def consultar_llm(prompt: str, temperature: float = 0.0) -> str:
         "model": MODEL_NAME,
         "prompt": prompt,
         "stream": False,  # Queremos a resposta completa de uma vez, não em pedaços (streaming)
+        "format": "json",
         "options": {"temperature": temperature, "num_predict": MAX_TOKENS},
     }
 
@@ -163,6 +187,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     ARQUIVO_INPUT = "dataset_startups_w_balanced_tags.csv"
-    ARQUIVO_OUTPUT = "resultados_experimento_llama3.csv"
+    ARQUIVO_OUTPUT = "resultados_experimento.csv"
 
     executar_experimento(ARQUIVO_INPUT, ARQUIVO_OUTPUT, limite_linhas=args.limit)
