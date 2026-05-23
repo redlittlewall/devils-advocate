@@ -1,4 +1,4 @@
-## Mitigação de vieses otimistas de inteligência artificial na validação de modelos de negócios digitais
+# Mitigação de vieses otimistas de inteligência artificial na validação de modelos de negócios digitais
 Este repositório contém o código-fonte, metodologia e estrutura de dados do experimento científico conduzido para o Trabalho de Conclusão de Curso (Especialização em Gestão de Negócios Digitais e Inteligência Artificial – ESALQ/USP) focado em Inteligência Artificial aplicada ao ecossistema de inovação e startups.
 
 Alinhado com os princípios de **Ciência Aberta (Open Science)**, este projeto foi desenhado para ser totalmente **reprodutível**, **auditável** e **transparente**. Qualquer pesquisador pode replicar exatamente os mesmos testes e resultados localmente sem depender de APIs pagas ou proprietárias.
