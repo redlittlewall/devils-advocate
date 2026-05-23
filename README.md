@@ -63,7 +63,7 @@ python3 -m venv .venv
 
 **Instalar as dependências científicas:**
 ```bash
-pip install pandas requests tqdm
+pip install pandas requests tqdm matplotlib seaborn
 ```
 
 ---
