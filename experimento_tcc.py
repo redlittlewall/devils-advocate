@@ -120,6 +120,12 @@ def executar_experimento(arquivo_entrada: str, arquivo_saida: str):
         resposta_adv = consultar_llama(prompt_diabo, temperature=0.0)
         respostas_advogado_diabo.append(resposta_adv)
 
+        # SALVAMENTO PARCIAL (CHECKPOINT)
+        df_parcial = df.iloc[: index + 1].copy()
+        df_parcial["Resposta_Generica"] = respostas_genericas
+        df_parcial["Resposta_Advogado_Diabo"] = respostas_advogado_diabo
+        df_parcial.to_csv(arquivo_saida, index=False, encoding="utf-8")
+
     # Anexando as novas colunas ao DataFrame original
     df["Resposta_Generica"] = respostas_genericas
     df["Resposta_Advogado_Diabo"] = respostas_advogado_diabo
@@ -127,7 +133,7 @@ def executar_experimento(arquivo_entrada: str, arquivo_saida: str):
     # Salvando o resultado final
     print(f"\nSalvando resultados em: {arquivo_saida}...")
     df.to_csv(arquivo_saida, index=False, encoding="utf-8")
-    print("Processamento concluído com sucesso! Boa sorte no seu TCC!")
+    print("Processamento concluído com sucesso!")
 
 
 if __name__ == "__main__":
