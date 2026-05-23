@@ -1,0 +1,12 @@
+# Ignorar ambiente virtual Python
+.venv/
+venv/
+env/
+
+# Ignorar arquivos temporários e de cache do Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Opcional: Descomente a linha abaixo se NÃO quiser publicar o CSV com as respostas geradas
+# resultados_experimento_llama3.csv
