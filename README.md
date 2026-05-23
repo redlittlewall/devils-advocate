@@ -63,7 +63,7 @@ python3 -m venv .venv
 
 **Instalar as dependências científicas:**
 ```bash
-pip install pandas requests tqdm matplotlib seaborn
+pip install pandas requests tqdm matplotlib seaborn 
 ```
 
 ---
@@ -78,9 +78,11 @@ O projeto consome um arquivo estruturado `dataset_startups_w_balanced_tags.csv` 
 * `Premissa_Inicial_Input`: A tese de negócio explícita que o modelo deve analisar.
 
 ### Output Gerado
-Após a execução do script, um novo arquivo chamado `resultados_experimento_llama3.csv` será gerado contendo o dataset original enriquecido com as seguintes colunas de dados textuais de saída:
-* `Resposta_Generica`: O parecer analítico completo gerado sob a persona de Assistente de Negócios.
-* `Resposta_Advogado_Diabo`: O parecer de stress-test contra o viés de otimismo gerado sob a persona de auditor de risco.
+Após a execução do script, os dados processados serão armazenados no diretório `resultados/`. Um novo arquivo CSV será gerado contendo o dataset original enriquecido com as respostas da IA. 
+
+Para garantir a extração analítica e matemática, as saídas do modelo são forçadas para o formato **JSON estruturado**, contendo métricas comparáveis (ex: `probabilidade_sucesso_0_a_100` e `probabilidade_falencia_0_a_100`):
+* `Resposta_Generica`: O parecer analítico (em JSON) gerado sob a persona de Assistente de Negócios, ancorado no framework *Lean Canvas*.
+* `Resposta_Advogado_Diabo`: O parecer de stress-test (em JSON) gerado sob a persona de auditor de risco, ancorado em frameworks de *Venture Capital*.
 
 ---
 
@@ -89,7 +91,11 @@ Após a execução do script, um novo arquivo chamado `resultados_experimento_ll
 Com o Ollama a rodar e o seu ambiente virtual ativo, basta executar o script principal:
 
 ```bash
+# Para rodar o experimento completo com toda a base de dados:
 python3 experimento_tcc.py
+
+# Para rodar testes rápidos (ex: processar apenas as primeiras 2 startups):
+python3 experimento_tcc.py --limit 2
 ```
 
 O script possui uma barra de progresso em tempo real que indicará o progresso e o tempo estimado para o encerramento do processamento em massa do dataset.
@@ -103,12 +109,14 @@ Para assegurar os princípios do Open Science, os parâmetros de inferência HTT
 {
   "model": "llama3",
   "stream": false,
+  "format": "json",
   "options": {
     "temperature": 0.0
   }
 }
 ```
 * **Ausência de Histórico de Sessão (Stateless):** Cada requisição HTTP efetuada para o Ollama é independente. O modelo avalia cada prompt sem conhecimento prévio de startups anteriores do dataset ou de personas opostas executadas na mesma linha, garantindo a neutralidade do contexto.
+* **Formato Estruturado Estrito:** A requisição exige que a resposta do modelo seja um JSON válido ("format": "json"), eliminando a aleatoriedade e variações de prosa que inviabilizariam a análise quantitativa.
 * **Temperatura Zero:** Reduz o sampling probabilístico a zero, forçando o modelo a selecionar sempre os tokens mais prováveis (*greedy decoding*), permitindo que outros cientistas gerem exatamente o mesmo output textual utilizando o mesmo seed.
 
 ---
